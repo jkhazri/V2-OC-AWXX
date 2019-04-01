@@ -16,7 +16,7 @@
     
 - name: Generate public key
   command:
-    ssh-keygen -q -t rsa -f {{ r_tempfile | quote }}  -C "" -N ""
+    ssh-keygen -q -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
 
 - name: Read public key 
   set_fact: 
