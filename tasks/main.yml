@@ -25,7 +25,7 @@
 - debug: 
     var: found
 
-- command: ls -ltr {{ r_tempfile.path | quote }}
+- command: ls -ltr {{ r_tempfile.path | quote }}/
 
 
 - name: Read public key 
