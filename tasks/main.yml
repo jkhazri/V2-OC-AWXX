@@ -18,6 +18,13 @@
   command:
     ssh-keygen -q -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
 
+- find: 
+    path: {{ r_tempfile.path }}
+  register: found
+
+- debug: 
+    var: found.list 
+
 - name: Read public key 
   set_fact: 
     temp_public_key: "{{ lookup('file', r_tempfile.path + '/id_rsa.pub') }} "
