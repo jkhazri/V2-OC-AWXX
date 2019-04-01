@@ -3,7 +3,7 @@
 - name: Create temporary directory
   tempfile:
     state: directory
-    suffix: hc
+    suffix: app
   register: r_tempfile
   delegate_to: localhost
   run_once: yes
@@ -16,7 +16,7 @@
     
 - name: Generate public key
   command:
-    ssh-keygen -q -t rsa {{ r_tempfile.path | quote }}  -C "" -N ""
+    ssh-keygen -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
 
 - find: 
     paths: "{{ r_tempfile.path }}" 
