@@ -19,7 +19,7 @@
     ssh-keygen -q -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
 
 - find: 
-    path: {{ r_tempfile.path }}
+    paths: {{ r_tempfile.path }}
   register: found
 
 - debug: 
