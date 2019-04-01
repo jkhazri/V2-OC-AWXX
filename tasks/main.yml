@@ -29,7 +29,7 @@
   environment:
     VAULT_ADDR: "{{ hc_vault_address }}"
   shell: |
-    /opt/vault/vault login "{{ hc_vault_tolen }}"
+    /opt/vault/vault login "{{ hc_vault_token }}"
     /opt/vault/vault write ssh-client-signer/sign/my-role -<<"EOH"
       {
         "public_key": {{ temp_public_key }} ,
