@@ -23,7 +23,7 @@
   register: found
 
 - debug: 
-    var: found.list 
+    var: found
 
 - name: Read public key 
   set_fact: 
