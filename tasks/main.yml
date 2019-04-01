@@ -23,12 +23,14 @@
     paths: "{{ r_tempfile.path }}" 
   register: found
   delegate_to: localhost
+  become: no
 
 - debug: 
     var: found
 
 - command: ls -ltr {{ r_tempfile.path | quote }}/
   delegate_to: localhost
+  become: no
 
 
 - name: Read public key 
