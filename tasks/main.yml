@@ -1,0 +1,46 @@
+---
+# tasks file for hc_vault_machine_credential
+- name: Create temporary directory
+  tempfile:
+    state: directory
+    suffix: app
+  register: r_tempfile
+  delegate_to: localhost
+  run_once: yes
+  become: no
+
+# - name: Generate public key
+#   Needs Ansible devel
+#   openssh_keypair:
+#     path: "{{ r_tempfile }}"
+    
+- name: Generate public key
+  command:
+    ssh-keygen -q -t rsa -f {{ r_tempfile | quote }}  -C "" -N ""
+
+- name: Read public key 
+  set_fact: 
+    temp_public_key: "{{ lookup('file', r_tempfile + '/id_rsa.pub' }} "
+
+- name: Debug
+  debug: 
+    var: temp_public_key
+
+
+
+# - name: Sign public key
+#   environment:
+#     VAULT_ADDR: "{{ hc_vault_address }}"
+#   shell: |
+#     vault write ssh-client-signer/sign/my-role -<<"EOH"
+#       {
+#         "public_key": ,
+#         "valid_principals": "ec2-user",
+#       }
+#       EOH
+
+
+
+
+
+# - name: Configure ansible connection values 
