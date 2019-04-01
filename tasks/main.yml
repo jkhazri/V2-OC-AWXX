@@ -6,7 +6,6 @@
     suffix: app
   register: r_tempfile
   delegate_to: localhost
-  run_once: yes
   become: no
 
 # - name: Generate public key
@@ -17,20 +16,25 @@
 - name: Generate public key
   command:
     ssh-keygen -t rsa -f {{ r_tempfile.path | quote }}/id_rsa  -C "" -N ""
+  delegate_to: localhost
+  become: no
 
 - find: 
     paths: "{{ r_tempfile.path }}" 
   register: found
+  delegate_to: localhost
 
 - debug: 
     var: found
 
 - command: ls -ltr {{ r_tempfile.path | quote }}/
+  delegate_to: localhost
 
 
 - name: Read public key 
   set_fact: 
     temp_public_key: "{{ lookup('file', r_tempfile.path + '/id_rsa.pub') }} "
+  delegate_to: localhost
 
 - name: Debug
   debug: 
