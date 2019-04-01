@@ -20,7 +20,7 @@
 
 - name: Read public key 
   set_fact: 
-    temp_public_key: "{{ lookup('file', r_tempfile + '/id_rsa.pub' }} "
+    temp_public_key: "{{ lookup('file', r_tempfile.path + '/id_rsa.pub' }} "
 
 - name: Debug
   debug: 
