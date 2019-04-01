@@ -36,6 +36,7 @@
         "valid_principals": "ec2-user",
       }
       EOH
+  delegate_to: localhost
 
 
 
