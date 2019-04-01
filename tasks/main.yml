@@ -19,41 +19,23 @@
   delegate_to: localhost
   become: no
 
-- find: 
-    paths: "{{ r_tempfile.path }}" 
-  register: found
-  delegate_to: localhost
-  become: no
-
-- debug: 
-    var: found
-
-- command: ls -ltr {{ r_tempfile.path | quote }}/
-  delegate_to: localhost
-  become: no
-
-
 - name: Read public key 
   set_fact: 
     temp_public_key: "{{ lookup('file', r_tempfile.path + '/id_rsa.pub') }} "
   delegate_to: localhost
 
-- name: Debug
-  debug: 
-    var: temp_public_key
 
-
-
-# - name: Sign public key
-#   environment:
-#     VAULT_ADDR: "{{ hc_vault_address }}"
-#   shell: |
-#     vault write ssh-client-signer/sign/my-role -<<"EOH"
-#       {
-#         "public_key": ,
-#         "valid_principals": "ec2-user",
-#       }
-#       EOH
+- name: Sign public key
+  environment:
+    VAULT_ADDR: "{{ hc_vault_address }}"
+  shell: |
+    /opt/vault/vault login "{{ hc_vault_tolen }}"
+    /opt/vault/vault write ssh-client-signer/sign/my-role -<<"EOH"
+      {
+        "public_key": {{ temp_public_key }} ,
+        "valid_principals": "ec2-user",
+      }
+      EOH
 
 
 
