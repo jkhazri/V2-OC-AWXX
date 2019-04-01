@@ -16,7 +16,7 @@
     
 - name: Generate public key
   command:
-    ssh-keygen -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
+    ssh-keygen -t rsa -f {{ r_tempfile.path | quote }}/id_rsa  -C "" -N ""
 
 - find: 
     paths: "{{ r_tempfile.path }}" 
