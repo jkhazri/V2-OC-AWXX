@@ -19,11 +19,14 @@
     ssh-keygen -q -t rsa -f {{ r_tempfile.path | quote }}  -C "" -N ""
 
 - find: 
-    paths: "{{ r_tempfile.path }}"
+    paths: "{{ r_tempfile.path }}" 
   register: found
 
 - debug: 
     var: found
+
+- command: ls -ltr {{ r_tempfile.path | quote }}
+
 
 - name: Read public key 
   set_fact: 
