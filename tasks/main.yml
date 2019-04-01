@@ -3,7 +3,7 @@
 - name: Create temporary directory
   tempfile:
     state: directory
-    suffix: app
+    suffix: hc
   register: r_tempfile
   delegate_to: localhost
   run_once: yes
