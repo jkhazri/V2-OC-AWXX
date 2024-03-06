@@ -23,13 +23,6 @@
        state: present
   when: ansible_distribution == 'Ubuntu'
 
-- name: Install KVM package for bare-metal
-  apt:
-       update_cache: yes
-       name:
-         - qemu-kvm
-  when: ansible_distribution == 'Ubuntu' and ansible_virtualization_role == 'host'
-
 
 
 
