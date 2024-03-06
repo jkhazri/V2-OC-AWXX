@@ -1,5 +1,35 @@
 ---
-# tasks file for 
+# tasks file for sec-temp-file
+- name: Install KVM packages and Update package cache
+  apt:
+       update_cache: yes
+       name:
+          - wget
+          - bridge-utils
+          - genisoimage
+          - libguestfs-tools
+          - libnss-libvirt
+          - libosinfo-bin
+          - libvirt-clients
+          - libvirt-daemon-system
+          - libvirt-dev
+          - python3-libvirt
+          - qemu-utils
+          - python3-guestfs
+          - pigz
+          - virt-top
+          - virtinst
+          - lvm2
+       state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install KVM package for bare-metal
+  apt:
+       update_cache: yes
+       name:
+         - qemu-kvm
+  when: ansible_distribution == 'Ubuntu' and ansible_virtualization_role == 'host'
+
 
 
 
