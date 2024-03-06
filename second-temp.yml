@@ -1,4 +1,9 @@
 ---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - ./vault-ssh-signer-role
+
 - hosts: AddedNode
   remote_user: root
   vars:
