@@ -1,4 +1,26 @@
+---
+# tasks file for agent-installation
+- name: Ensure python3-pip is installed
+  become: true
+  become_user: root
+  apt:
+    name: python3-pip
+    state: present
+- name: Ensure directories exist
+  file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+  loop:
+    - /tmp/mvm_event_files"
+    - /tmp/sockets"
+    - /tmp/mvm_images"
+    - /tmp/vsockets"
 
+- name: Download vmlinux.bin
+  get_url:
+        url: "https://templates.m1dns.com/kernel/vmlinux.bin"
+        dest: "/tmp/vmlinux.bin"
 
 
 
