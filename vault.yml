@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - hc_vault_machine_credential
+    - ./vault-ssh-signer-role
