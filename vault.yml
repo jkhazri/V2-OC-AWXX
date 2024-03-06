@@ -3,7 +3,6 @@
   remote_user: root
   roles:
     - ./vault-ssh-signer-role
-    - ./get-node-stat
 
 - hosts: AddedNode
   remote_user: root
