@@ -19,7 +19,7 @@
 
 - name: Download vmlinux.bin
   get_url:
-        url: "https://templates.m1dns.com/kernel/vmlinux.bin"
+        url: "https://****************/kernel/vmlinux.bin"
         dest: "/tmp/vmlinux.bin"
 
 
