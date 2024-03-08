@@ -18,7 +18,7 @@
     - /tmp/vsockets"
 
 - name: Print node_id and playbook name
-      debug:
+  debug:
         msg: "Node ID: {{ node_id }} | Playbook Name: {{ ansible_playbook_name }}"
 
 
