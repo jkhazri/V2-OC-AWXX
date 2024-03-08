@@ -23,6 +23,11 @@
        state: present
   when: ansible_distribution == 'Ubuntu'
 
+  
+  - name: Print node_id and playbook name
+      debug:
+        msg: "Node ID: {{ node_id }} | Playbook Name: {{ ansible_playbook_name }}"
+
 
 
 
