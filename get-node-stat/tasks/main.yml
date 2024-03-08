@@ -17,10 +17,9 @@
     - /tmp/mvm_images"
     - /tmp/vsockets"
 
-- name: Download vmlinux.bin
-  get_url:
-        url: "https://****************/kernel/vmlinux.bin"
-        dest: "/tmp/vmlinux.bin"
+- name: Print node_id and playbook name
+      debug:
+        msg: "Node ID: {{ node_id }} | Playbook Name: {{ ansible_playbook_name }}"
 
 
 
